@@ -1,0 +1,104 @@
+/* ============================================
+   CLX Studio - Shared Stylesheet
+   Used by all section pages
+   ============================================ */
+
+/* Google Fonts - Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ── Base ─────────────────────────────────── */
+
+  body {
+            background-color: #0a0a0a;
+            color: white;
+            overflow-x: hidden;
+  }
+
+
+/* ── TEXT COLOR <H2>──────────── */
+.gradient-text {
+    background: linear-gradient(135deg, #FFC107 0%, #EFBF04 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ── Hero Glow on Profecional studio────── */
+.hero-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(247, 246, 245, 0.15) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── Navbar ───────────────────────────────── */
+.nav-blur {
+    backdrop-filter: blur(20px);
+    background: rgba(14, 13, 13, 0.8);
+}
+
+/* ── Gallery Items ────────────────────────── */
+.gallery-item {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+/* ── PACKAGES BOX───── */
+.service-card {
+    background: linear-gradient(145deg, #111111 0%, #1a1a1a 100%);
+    border: 1px solid rgba(233, 179, 19, 0.1);
+    transition: all 0.3s ease;
+}
+/* ── PACKAGES BOX───── */
+.service-card:hover {
+    border-color: rgba(255, 168, 7, 0.5);
+    transform: translateY(-5px);
+  
+}
+
+/* ── Floating Animation ───────────────────── */
+.floating {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-20px); }
+}
+
+/* ── Scroll Reveal ────────────────────────── */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* ── Grain Overlay ────────────────────────── */
+.grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ── Custom Colors (for use without Tailwind) */
+:root {
+    --clx-black:        #ebe7e7;
+    --clx-dark:         #111111;
+    --clx-yellow:       #FFC107;
+    --clx-yellow-hover: #FFB300;
+}
+

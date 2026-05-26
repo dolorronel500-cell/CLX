@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLX Studio | Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                    
+                        'clx-yellow':       '#FFC107',
+                        'clx-yellow-hover': '#FFB300',
+                    },
+              
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased selection:bg-clx-yellow selection:text-black">
+
+    <!-- Grain Overlay -->
+    <div class="grain"></div>
+
+    <!-- ═══════════════════════════════════════
+         NAVIGATION
+    ════════════════════════════════════════ -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+
+            <!-- Logo -->
+            <div class="flex items-center gap-3 group cursor-pointer" onclick="window.scrollTo(0,0)">
+                <div class="w-12 h-12 bg-clx-yellow rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300 shadow-lg shadow-clx-yellow/20">
+                    <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold tracking-wider text-white">CLX STUDIO</span>
+                    <span class="text-xs text-gray-400 tracking-wide">Zone 1 Sta. Rosa Del Sur, Pasacao, Camarines Sur</span>
+                </div>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html"    class="text-sm font-medium text-white hover:text-clx-yellow transition-colors relative group">Home<span class="absolute -bottom-1 left-0 w-full h-0.5 bg-clx-yellow"></span></a>
+                <a href="packages.html" class="text-sm font-medium text-gray-300 hover:text-clx-yellow transition-colors relative group">Packages<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-clx-yellow transition-all duration-300 group-hover:w-full"></span></a>
+                <a href="gallery.html"  class="text-sm font-medium text-gray-300 hover:text-clx-yellow transition-colors relative group">Gallery<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-clx-yellow transition-all duration-300 group-hover:w-full"></span></a>
+                <a href="booking.html"  class="text-sm font-medium text-gray-300 hover:text-clx-yellow transition-colors relative group">Booking<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-clx-yellow transition-all duration-300 group-hover:w-full"></span></a>
+                <a href="contact.html"  class="text-sm font-medium text-gray-300 hover:text-clx-yellow transition-colors relative group">Contact<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-clx-yellow transition-all duration-300 group-hover:w-full"></span></a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden absolute top-full left-0 w-full bg-clx-dark border-t border-gray-800">
+            <div class="flex flex-col p-6 gap-4">
+                <a href="index.html"    class="text-white hover:text-clx-yellow py-2">Home</a>
+                <a href="packages.html" class="text-gray-300 hover:text-clx-yellow py-2">Packages</a>
+                <a href="booking.html"  class="text-gray-300 hover:text-clx-yellow py-2">Booking</a>
+                <a href="gallery.html"  class="text-gray-300 hover:text-clx-yellow py-2">Gallery</a>
+                <a href="contact.html"  class="text-gray-300 hover:text-clx-yellow py-2">Contact</a>
+                <a href="booking.html"  class="bg-clx-yellow text-black px-6 py-3 rounded-full font-semibold mt-2 text-center">Book Online</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════
+         HERO / HOME SECTION
+    ════════════════════════════════════════ -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="hero-glow"></div>
+
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-clx-yellow/5 rounded-full blur-3xl floating"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-clx-yellow/5 rounded-full blur-3xl floating" style="animation-delay:-3s;"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+            <div class="reveal">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight">
+                    <span class="text-white">Professional</span><br>
+                    <span class="gradient-text">Photo Studio</span>
+                </h1>
+            </div>
+
+            <div class="reveal" style="animation-delay:0.2s;">
+                <p class="text-xl md:text-2xl text-clx-yellow font-semibold mb-8 tracking-wide">
+                    Now Open for Online Booking
+                </p>
+            </div>
+
+            <div class="reveal" style="animation-delay:0.4s;">
+                <p class="text-gray-400 max-w-2xl mx-auto mb-10 text-lg leading-relaxed">
+                    Capture your precious moments with our state-of-the-art equipment and professional photographers.
+                    From portraits to events, we bring your vision to life.
+                </p>
+            </div>
+
+            <div class="reveal flex flex-col sm:flex-row gap-4 justify-center" style="animation-delay:0.6s;">
+                <a href="booking.html" class="bg-clx-yellow text-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-clx-yellow-hover transform hover:scale-105 transition-all duration-300 shadow-xl shadow-clx-yellow/30 btn-shine">
+                    Book a Session
+                </a>
+                <a href="gallery.html" class="border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold text-lg hover:border-clx-yellow hover:text-clx-yellow transition-all duration-300 flex items-center justify-center gap-2 group">
+                    View Portfolio
+                    <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-clx-yellow/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         FOOTER
+    ════════════════════════════════════════ -->
+    <footer class="bg-black border-t border-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-clx-yellow rounded-lg flex items-center justify-center">
+                    <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                    </svg>
+                </div>
+                <span class="text-lg font-bold">CLX STUDIO</span>
+            </div>
+            <p class="text-gray-500 text-sm">© 2024 CLX Studio. All rights reserved.</p>
+            <div class="flex gap-6 text-sm">
+                <a href="#" class="text-gray-400 hover:text-clx-yellow transition-colors">Privacy</a>
+                <a href="#" class="text-gray-400 hover:text-clx-yellow transition-colors">Terms</a>
+                <a href="#" class="text-gray-400 hover:text-clx-yellow transition-colors">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════
+         SCRIPTS
+    ════════════════════════════════════════ -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-blur', 'border-b', 'border-gray-800');
+            } else {
+                navbar.classList.remove('nav-blur', 'border-b', 'border-gray-800');
+            }
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // GSAP reveal animations
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('.reveal').forEach(el => {
+            gsap.to(el, {
+                scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" },
+                opacity: 1, y: 0, duration: 0.8, ease: "power3.out"
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLX Studio | Booking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'clx-black':        '#0a0a0a',
+                        'clx-dark':         '#111111',
+                        'clx-yellow':       '#FFC107',
+                        'clx-yellow-hover': '#FFB300',
+                    },
+                    fontFamily: { 'sans': ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased bg-clx-black text-white selection:bg-clx-yellow selection:text-black">
+
+    <div class="grain"></div>
+
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3 group cursor-pointer" onclick="location.href='index.html'">
+                <div class="w-12 h-12 bg-clx-yellow rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300 shadow-lg shadow-clx-yellow/20">
+                    <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold tracking-wider text-white">CLX STUDIO</span>
+                    <span class="text-xs text-gray-400 tracking-wide">Zone 1 Sta. Rosa Del Sur, Pasacao, Camarines Sur</span>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html"    class="text-sm font-medium text-gray-300 hover:text-clx-yellow transition-colors relative group">Home</a>
+                <a href="packages.html" class="text-sm font-medium text-gray-300 hover:text-clx-yellow transition-colors relative group">Packages</a>
+                <a href="gallery.html"  class="text-sm font-medium text-gray-300 hover:text-clx-yellow transition-colors relative group">Gallery</a>
+                <a href="booking.html"  class="text-sm font-medium text-white hover:text-clx-yellow transition-colors relative group">Booking<span class="absolute -bottom-1 left-0 w-full h-0.5 bg-clx-yellow"></span></a>
+                <a href="contact.html"  class="text-sm font-medium text-gray-300 hover:text-clx-yellow transition-colors relative group">Contact</a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-white p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <section id="booking" class="pt-32 pb-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-clx-yellow/5 to-transparent"></div>
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Book Your <span class="text-clx-yellow">Session</span></h2>
+                <p class="text-gray-400">Fill out the form below and we'll get back to you within 24 hours</p>
+            </div>
+
+            <form id="booking-form" class="bg-clx-dark/50 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-gray-800 reveal">
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-2">Full Name</label>
+                        <input type="text" id="full_name" required class="w-full bg-black/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-clx-yellow focus:outline-none transition-colors" placeholder="Juan Dela Cruz">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-2">Email</label>
+                        <input type="email" id="email" required class="w-full bg-black/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-clx-yellow focus:outline-none transition-colors" placeholder="juan@example.com">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-2">Phone</label>
+                        <input type="tel" id="phone" required class="w-full bg-black/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-clx-yellow focus:outline-none transition-colors" placeholder="+63 912 345 6789">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-2">Preferred Date</label>
+                        <input type="date" id="preferred_date" required class="w-full bg-black/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-clx-yellow focus:outline-none transition-colors">
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-400 mb-2">Package</label>
+                    <select id="package-select" required class="w-full bg-black/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-clx-yellow focus:outline-none transition-colors">
+                        <option value="">Select a package</option>
+                        <option value="solo">Solo Package – 10 min shots – ₱249.00</option>
+                        <option value="barkada-std">Barkada Standard Package – 40 min shots – ₱1,000.00</option>
+                        <option value="barkada-prem">Barkada Premium Package – 40 min shots – ₱1,199.00</option>
+                        <option value="student">Student Package – 5 min shots – ₱149.00</option>
+                        <option value="duo">Duo/Couple Package – 20 min shots – ₱449.00</option>
+                        <option value="trio">Trio Standard Package – 20 min shots – ₱749.00</option>
+                        <option value="fam-std">Family Standard Package – 40 min shots – ₱1,199.00</option>
+                        <option value="fam-prem">Family Premium Package – 60 min shots – ₱1,399.00</option>
+                        <option value="bday-adults">Birthday (Adults) Package – 90 min shots – ₱2,000.00</option>
+                        <option value="predebut">Pre-Debut Package – 90 min shots – ₱2,500.00</option>
+                        <option value="bday-kids">Birthday (Kids) Package – 90 min shots – ₱1,500.00</option>
+                    </select>
+                </div>
+
+                <div class="mb-8">
+                    <label class="block text-sm font-medium text-gray-400 mb-2">Message</label>
+                    <textarea id="message" rows="4" class="w-full bg-black/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-clx-yellow focus:outline-none transition-colors resize-none" placeholder="Tell us about your vision..."></textarea>
+                </div>
+
+                <button type="submit" id="submit-btn" class="w-full bg-clx-yellow text-black py-4 rounded-full font-bold text-lg hover:bg-clx-yellow-hover transform hover:scale-[1.02] transition-all duration-300 shadow-xl shadow-clx-yellow/30">
+                    Confirm Booking Request
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <div id="toast" class="fixed bottom-6 right-6 bg-clx-yellow text-black px-6 py-4 rounded-xl font-semibold shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 z-[100] flex items-center gap-3">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <span id="toast-message">Booking submitted successfully!</span>
+    </div>
+
+    <script>
+        // 1. Initialize Supabase
+        // Replace these placeholders with your actual project credentials from your Supabase Dashboard Settings
+        const SUPABASE_URL = 'https://sdixpwxchenqdzvdtxxx.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNkaXhwd3hjaGVucWR6dmR0eHh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk3NTUyMTEsImV4cCI6MjA5NTMzMTIxMX0._S42A7ho5alkIHCt-dGnQSpV0wffym95yBEzkNRsyCM';
+        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // 2. Handle Form Submission
+        const bookingForm = document.getElementById('booking-form');
+        const submitBtn = document.getElementById('submit-btn');
+
+        bookingForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Change button state to loading
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Processing...";
+
+            // Gather values from inputs
+            const formData = {
+                full_name: document.getElementById('full_name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                preferred_date: document.getElementById('preferred_date').value,
+                package: document.getElementById('package-select').value,
+                message: document.getElementById('message').value
+            };
+
+            try {
+                // Insert data into your 'bookings' table
+                const { data, error } = await supabase
+                    .from('bookings')
+                    .insert([formData]);
+
+                if (error) throw error;
+
+                // Success
+                showToast("Booking request submitted! We'll contact you soon.");
+                bookingForm.reset();
+
+            } catch (error) {
+                console.error("Database Error:", error.message);
+                showToast("Error saving booking. Please try again.");
+            } finally {
+                // Restore button state
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Confirm Booking Request";
+            }
+        });
+
+        // 3. UI Helpers & Animations
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0'), 4000);
+        }
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if(navbar) navbar.classList.toggle('bg-black/80', window.scrollY > 50);
+        });
+
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu')?.classList.toggle('hidden');
+        });
+
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('.reveal').forEach(el => {
+            gsap.to(el, {
+                scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" },
+                opacity: 1, y: 0, duration: 0.8, ease: "power3.out"
+            });
+        });
+    </script>
+</body>
+</html>

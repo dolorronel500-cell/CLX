@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLX Studio | Packages</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'clx-black':        '#0a0a0a',
+                        'clx-dark':         '#111111',
+                        'clx-yellow':       '#FFC107',
+                        'clx-yellow-hover': '#FFB300',
+                    },
+                    fontFamily: { 'sans': ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased selection:bg-clx-yellow selection:text-black">
+
+    <!-- Grain Overlay -->
+    <div class="grain"></div>
+
+    <!-- ═══════════════════════════════════════
+         NAVIGATION
+    ════════════════════════════════════════ -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3 group cursor-pointer" onclick="location.href='index.html'">
+                <div class="w-12 h-12 bg-clx-yellow rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300 shadow-lg shadow-clx-yellow/20">
+                    <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold tracking-wider text-white">CLX STUDIO</span>
+                    <span class="text-xs text-gray-400 tracking-wide">Zone 1 Sta. Rosa Del Sur, Pasacao, Camarines Sur</span>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html"    class="text-sm font-medium text-gray-300 hover:text-clx-yellow transition-colors relative group">Home<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-clx-yellow transition-all duration-300 group-hover:w-full"></span></a>
+                <a href="packages.html" class="text-sm font-medium text-white hover:text-clx-yellow transition-colors relative group">Packages<span class="absolute -bottom-1 left-0 w-full h-0.5 bg-clx-yellow"></span></a>
+                <a href="gallery.html"  class="text-sm font-medium text-gray-300 hover:text-clx-yellow transition-colors relative group">Gallery<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-clx-yellow transition-all duration-300 group-hover:w-full"></span></a>
+                <a href="booking.html"  class="text-sm font-medium text-gray-300 hover:text-clx-yellow transition-colors relative group">Booking<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-clx-yellow transition-all duration-300 group-hover:w-full"></span></a>
+                <a href="contact.html"  class="text-sm font-medium text-gray-300 hover:text-clx-yellow transition-colors relative group">Contact<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-clx-yellow transition-all duration-300 group-hover:w-full"></span></a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-white p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden absolute top-full left-0 w-full bg-clx-dark border-t border-gray-800">
+            <div class="flex flex-col p-6 gap-4">
+                <a href="index.html"    class="text-gray-300 hover:text-clx-yellow py-2">Home</a>
+                <a href="packages.html" class="text-white hover:text-clx-yellow py-2">Packages</a>
+                <a href="booking.html"  class="text-gray-300 hover:text-clx-yellow py-2">Booking</a>
+                <a href="gallery.html"  class="text-gray-300 hover:text-clx-yellow py-2">Gallery</a>
+                <a href="contact.html"  class="text-gray-300 hover:text-clx-yellow py-2">Contact</a>
+                <a href="booking.html"  class="bg-clx-yellow text-black px-6 py-3 rounded-full font-semibold mt-2 text-center">Book Online</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════
+         PAGE HEADER
+    ════════════════════════════════════════ -->
+    <div class="pt-32 pb-8 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Our <span class="gradient-text">Packages</span></h1>
+        <p class="text-gray-400 max-w-2xl mx-auto">Choose from our carefully curated packages designed to meet every photography need</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         PACKAGES SECTION
+    ════════════════════════════════════════ -->
+    <main class="py-12 relative">
+        <div class="max-w-7xl mx-auto px-6">
+
+            <!-- ── Row 1: Solo · Barkada Standard · Barkada Premium ── -->
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+
+                <!-- Solo Package -->
+                <div class="service-card rounded-2xl p-8 reveal group cursor-pointer" onclick="location.href='booking.html'">
+                    <div class="w-14 h-14 bg-clx-yellow/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-clx-yellow/20 transition-colors">
+                        <svg class="w-7 h-7 text-clx-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Solo Package</h3>
+                    <div class="text-3xl font-bold text-clx-yellow mb-4">₱249.00</div>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Maximum of 1 Pax</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>10 Minutes Shots</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>1 Choice of Background</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Free Use of Props</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>1 Hard Copy</li>
+                    </ul>
+                </div>
+
+                <!-- Barkada Standard Package -->
+                <div class="service-card rounded-2xl p-8 reveal group cursor-pointer relative overflow-hidden" onclick="location.href='booking.html'" style="animation-delay:0.1s;">
+                    <div class="absolute top-0 right-0 bg-clx-yellow text-black text-xs font-bold px-4 py-1 rounded-bl-xl">POPULAR</div>
+                    <div class="w-14 h-14 bg-clx-yellow/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-clx-yellow/20 transition-colors">
+                        <svg class="w-7 h-7 text-clx-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Barkada Standard Package</h3>
+                    <div class="text-3xl font-bold text-clx-yellow mb-4">₱1,000.00</div>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Maximum of 6 Pax</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>40 Minutes Shots</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>1 Choice of Background</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Free Use of Props</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>4 Hard Copy</li>
+                    </ul>
+                </div>
+
+                <!-- Barkada Premium Package -->
+                <div class="service-card rounded-2xl p-8 reveal group cursor-pointer" onclick="location.href='booking.html'" style="animation-delay:0.2s;">
+                    <div class="w-14 h-14 bg-clx-yellow/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-clx-yellow/20 transition-colors">
+                        <svg class="w-7 h-7 text-clx-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Barkada Premium Package</h3>
+                    <div class="text-3xl font-bold text-clx-yellow mb-4">₱1,199.00</div>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Maximum of 8 Pax</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>40 Minutes Shots</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>2 Choices of Background</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Free Use of Props</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>6 Hard Copy</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ── Row 2: Student · Duo/Couple · Trio Standard ── -->
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+
+                <!-- Student Package -->
+                <div class="service-card rounded-2xl p-8 reveal group cursor-pointer" onclick="location.href='booking.html'">
+                    <div class="w-14 h-14 bg-clx-yellow/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-clx-yellow/20 transition-colors">
+                        <svg class="w-7 h-7 text-clx-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Student Package</h3>
+                    <div class="text-3xl font-bold text-clx-yellow mb-4">₱149.00</div>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Maximum of 4 Pax</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>5 Minutes Shots</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>1 Choice of Background</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Free Use of Props</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>1 Hard Copy</li>
+                    </ul>
+                </div>
+
+                <!-- Duo/Couple Package -->
+                <div class="service-card rounded-2xl p-8 reveal group cursor-pointer relative overflow-hidden" onclick="location.href='booking.html'" style="animation-delay:0.1s;">
+                    <div class="absolute top-0 right-0 bg-clx-yellow text-black text-xs font-bold px-4 py-1 rounded-bl-xl">POPULAR</div>
+                    <div class="w-14 h-14 bg-clx-yellow/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-clx-yellow/20 transition-colors">
+                        <svg class="w-7 h-7 text-clx-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Duo/Couple Package</h3>
+                    <div class="text-3xl font-bold text-clx-yellow mb-4">₱449.00</div>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Maximum of 2 Pax</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>20 Minutes Shots</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>2 Choices of Background</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Free Use of Props</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>2 Hard Copy</li>
+                    </ul>
+                </div>
+
+                <!-- Trio Standard Package -->
+                <div class="service-card rounded-2xl p-8 reveal group cursor-pointer" onclick="location.href='booking.html'" style="animation-delay:0.2s;">
+                    <div class="w-14 h-14 bg-clx-yellow/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-clx-yellow/20 transition-colors">
+                        <svg class="w-7 h-7 text-clx-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Trio Standard Package</h3>
+                    <div class="text-3xl font-bold text-clx-yellow mb-4">₱749.00</div>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Maximum of 3 Pax</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>20 Minutes Shots</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>1 Choice of Background</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Free Use of Props</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>3 Hard Copy</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ── Row 3: Family Standard · Family Premium · Birthday (Kids) ── -->
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+
+                <!-- Family Standard Package -->
+                <div class="service-card rounded-2xl p-8 reveal group cursor-pointer" onclick="location.href='booking.html'">
+                    <div class="w-14 h-14 bg-clx-yellow/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-clx-yellow/20 transition-colors">
+                        <svg class="w-7 h-7 text-clx-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Family Standard Package</h3>
+                    <div class="text-3xl font-bold text-clx-yellow mb-4">₱1,199.00</div>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Maximum of 8 Pax</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>40 Minutes Shots</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>2 Choices of Background</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Free Use of Props</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>6 Hard Copy</li>
+                    </ul>
+                </div>
+
+                <!-- Family Premium Package -->
+                <div class="service-card rounded-2xl p-8 reveal group cursor-pointer relative overflow-hidden" onclick="location.href='booking.html'" style="animation-delay:0.1s;">
+                    <div class="absolute top-0 right-0 bg-clx-yellow text-black text-xs font-bold px-4 py-1 rounded-bl-xl">POPULAR</div>
+                    <div class="w-14 h-14 bg-clx-yellow/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-clx-yellow/20 transition-colors">
+                        <svg class="w-7 h-7 text-clx-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Family Premium Package</h3>
+                    <div class="text-3xl font-bold text-clx-yellow mb-4">₱1,399.00</div>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Maximum of 12 Pax</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>60 Minutes Shots</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>All Backdrops Available</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Free Use of Props</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>10 Hard Copy</li>
+                    </ul>
+                </div>
+
+                <!-- Birthday (Kids) Package -->
+                <div class="service-card rounded-2xl p-8 reveal group cursor-pointer" onclick="location.href='booking.html'" style="animation-delay:0.2s;">
+                    <div class="w-14 h-14 bg-clx-yellow/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-clx-yellow/20 transition-colors">
+                        <svg class="w-7 h-7 text-clx-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Birthday (Kids) Package</h3>
+                    <div class="text-3xl font-bold text-clx-yellow mb-4">₱1,500.00</div>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Creative Shots</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>90 Minutes Shots</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>All Backdrops Available</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Free Use of Props</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Free Use of Furniture</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ── Row 4: Birthday (Adults) · Pre-Debut ── -->
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+
+                <!-- Birthday (Adults) Package -->
+                <div class="service-card rounded-2xl p-8 reveal group cursor-pointer" onclick="location.href='booking.html'">
+                    <div class="w-14 h-14 bg-clx-yellow/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-clx-yellow/20 transition-colors">
+                        <svg class="w-7 h-7 text-clx-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Birthday (Adults) Package</h3>
+                    <div class="text-3xl font-bold text-clx-yellow mb-4">₱2,000.00</div>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Creative Shots</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>90 Minutes Shots</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>All Backdrops Available</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Free Use of Props</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Free Use of Furniture</li>
+                    </ul>
+                </div>
+
+                <!-- Pre-Debut Package -->
+                <div class="service-card rounded-2xl p-8 reveal group cursor-pointer relative overflow-hidden" onclick="location.href='booking.html'" style="animation-delay:0.1s;">
+                    <div class="absolute top-0 right-0 bg-clx-yellow text-black text-xs font-bold px-4 py-1 rounded-bl-xl">POPULAR</div>
+                    <div class="w-14 h-14 bg-clx-yellow/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-clx-yellow/20 transition-colors">
+                        <svg class="w-7 h-7 text-clx-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Pre-Debut Package</h3>
+                    <div class="text-3xl font-bold text-clx-yellow mb-4">₱2,500.00</div>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Creative Shots</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>90 Minutes Shots</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>All Backdrops Available</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Free Use of Props</li>
+                        <li class="flex items-center gap-2"><svg class="w-5 h-5 text-clx-yellow flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Free Use of Furniture</li>
+                    </ul>
+                </div>
+
+                <!-- Empty slot / CTA -->
+                <div class="service-card rounded-2xl p-8 reveal flex flex-col items-center justify-center text-center gap-4" style="animation-delay:0.2s;">
+                    <div class="w-14 h-14 bg-clx-yellow/10 rounded-xl flex items-center justify-center">
+                        <svg class="w-7 h-7 text-clx-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold">Need a Custom Package?</h3>
+                    <p class="text-gray-400 text-sm">Contact us and we'll tailor a package just for you.</p>
+                    <a href="contact.html" class="bg-clx-yellow text-black px-6 py-3 rounded-full font-semibold text-sm hover:bg-clx-yellow-hover transition-all btn-shine">Get in Touch</a>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center">
+                <a href="booking.html" class="inline-block bg-clx-yellow text-black px-10 py-4 rounded-full font-bold text-lg hover:bg-clx-yellow-hover transform hover:scale-105 transition-all duration-300 shadow-xl shadow-clx-yellow/30 btn-shine">
+                    Book Your Session Now
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- ═══════════════════════════════════════
+         FOOTER
+    ════════════════════════════════════════ -->
+    <footer class="bg-black border-t border-gray-800 py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-clx-yellow rounded-lg flex items-center justify-center">
+                    <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg>
+                </div>
+                <span class="text-lg font-bold">CLX STUDIO</span>
+            </div>
+            <p class="text-gray-500 text-sm">© 2024 CLX Studio. All rights reserved.</p>
+            <div class="flex gap-6 text-sm">
+                <a href="#" class="text-gray-400 hover:text-clx-yellow transition-colors">Privacy</a>
+                <a href="#" class="text-gray-400 hover:text-clx-yellow transition-colors">Terms</a>
+                <a href="#" class="text-gray-400 hover:text-clx-yellow transition-colors">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('nav-blur', window.scrollY > 50);
+            navbar.classList.toggle('border-b', window.scrollY > 50);
+            navbar.classList.toggle('border-gray-800', window.scrollY > 50);
+        });
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('.reveal').forEach(el => {
+            gsap.to(el, {
+                scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" },
+                opacity: 1, y: 0, duration: 0.8, ease: "power3.out"
+            });
+        });
+    </script>
+</body>
+</html>

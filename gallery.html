@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLX Studio | Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'clx-black':        '#0a0a0a',
+                        'clx-dark':         '#111111',
+                        'clx-yellow':       '#FFC107',
+                        'clx-yellow-hover': '#FFB300',
+                    },
+                    fontFamily: { 'sans': ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased selection:bg-clx-yellow selection:text-black">
+
+    <!-- Grain Overlay -->
+    <div class="grain"></div>
+
+    <!-- ═══════════════════════════════════════
+         NAVIGATION
+    ════════════════════════════════════════ -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3 group cursor-pointer" onclick="location.href='index.html'">
+                <div class="w-12 h-12 bg-clx-yellow rounded-xl flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300 shadow-lg shadow-clx-yellow/20">
+                    <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold tracking-wider text-white">CLX STUDIO</span>
+                    <span class="text-xs text-gray-400 tracking-wide">Zone 1 Sta. Rosa Del Sur, Pasacao, Camarines Sur</span>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html"    class="text-sm font-medium text-gray-300 hover:text-clx-yellow transition-colors relative group">Home<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-clx-white transition-all duration-300 group-hover:w-full"></span></a>
+                <a href="packages.html" class="text-sm font-medium text-gray-300 hover:text-clx-yellow transition-colors relative group">Packages<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-clx-white transition-all duration-300 group-hover:w-full"></span></a>
+                <a href="gallery.html"  class="text-sm font-medium text-white hover:text-clx-yellow transition-colors relative group">Gallery<span class="absolute -bottom-1 left-0 w-full h-0.5 bg-clx-white"></span></a>
+                <a href="booking.html"  class="text-sm font-medium text-gray-300 hover:text-clx-yellow transition-colors relative group">Booking<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-clx-white transition-all duration-300 group-hover:w-full"></span></a>
+                <a href="contact.html"  class="text-sm font-medium text-gray-300 hover:text-clx-yellow transition-colors relative group">Contact<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-clx-white transition-all duration-300 group-hover:w-full"></span></a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-white p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden absolute top-full left-0 w-full bg-clx-dark border-t border-gray-800">
+            <div class="flex flex-col p-6 gap-4">
+                <a href="index.html"    class="text-gray-300 hover:text-clx-yellow py-2">Home</a>
+                <a href="packages.html" class="text-gray-300 hover:text-clx-yellow py-2">Packages</a>
+                <a href="booking.html"  class="text-gray-300 hover:text-clx-yellow py-2">Booking</a>
+                <a href="gallery.html"  class="text-white hover:text-clx-yellow py-2">Gallery</a>
+                <a href="contact.html"  class="text-gray-300 hover:text-clx-yellow py-2">Contact</a>
+                <a href="booking.html"  class="bg-clx-yellow text-black px-6 py-3 rounded-full font-semibold mt-2 text-center">Book Online</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════
+         GALLERY SECTION
+    ════════════════════════════════════════ -->
+    <section id="gallery" class="pt-32 pb-24 bg-clx-dark/30">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Our <span class="gradient-text">Portfolio</span></h2>
+                <p class="text-gray-400">A glimpse into our recent work</p>
+            </div>
+
+            <!-- Masonry-style grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+
+                <!-- Item 0 – tall -->
+                <div class="gallery-item relative overflow-hidden rounded-xl row-span-2 cursor-pointer group" onclick="openLightbox(0)">
+                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&h=800&fit=crop" alt="Portrait Session" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <span class="text-white font-semibold">Portrait Session</span>
+                    </div>
+                </div>
+
+                <!-- Item 1 -->
+                <div class="gallery-item relative overflow-hidden rounded-xl cursor-pointer group" onclick="openLightbox(1)">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=400&fit=crop" alt="Wedding" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <span class="text-white font-semibold">Wedding</span>
+                    </div>
+                </div>
+
+                <!-- Item 2 – tall -->
+                <div class="gallery-item relative overflow-hidden rounded-xl row-span-2 cursor-pointer group" onclick="openLightbox(2)">
+                    <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=600&h=800&fit=crop" alt="Studio Shoot" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <span class="text-white font-semibold">Studio Shoot</span>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="gallery-item relative overflow-hidden rounded-xl cursor-pointer group" onclick="openLightbox(3)">
+                    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600&h=400&fit=crop" alt="Event" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <span class="text-white font-semibold">Event</span>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="gallery-item relative overflow-hidden rounded-xl cursor-pointer group" onclick="openLightbox(4)">
+                    <img src="https://images.unsplash.com/photo-1520854221256-17451cc330e7?w=600&h=400&fit=crop" alt="Product" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <span class="text-white font-semibold">Product</span>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="gallery-item relative overflow-hidden rounded-xl cursor-pointer group" onclick="openLightbox(5)">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&h=400&fit=crop" alt="Graduation" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <span class="text-white font-semibold">Graduation</span>
+                    </div>
+                </div>
+
+                <!-- Item 6 – tall -->
+                <div class="gallery-item relative overflow-hidden rounded-xl row-span-2 cursor-pointer group" onclick="openLightbox(6)">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop" alt="Professional Headshot" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <span class="text-white font-semibold">Professional Headshot</span>
+                    </div>
+                </div>
+
+                <!-- Item 7 -->
+                <div class="gallery-item relative overflow-hidden rounded-xl cursor-pointer group" onclick="openLightbox(7)">
+                    <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&h=400&fit=crop" alt="Fashion" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <span class="text-white font-semibold">Fashion</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center mt-12">
+                <a href="booking.html" class="inline-block bg-clx-yellow text-black px-10 py-4 rounded-full font-bold text-lg hover:bg-clx-yellow-hover transform hover:scale-105 transition-all duration-300 shadow-xl shadow-clx-yellow/30 btn-shine">
+                    Book Your Session
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         LIGHTBOX
+    ════════════════════════════════════════ -->
+    <div id="lightbox" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-sm flex items-center justify-center">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white/70 hover:text-white z-10">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <button onclick="prevImage()" class="absolute left-6 text-white/70 hover:text-white z-10 hidden md:block">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button onclick="nextImage()" class="absolute right-6 text-white/70 hover:text-white z-10 hidden md:block">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+        <img id="lightbox-img" src="" alt="Gallery" class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-2xl">
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         FOOTER
+    ════════════════════════════════════════ -->
+    <footer class="bg-black border-t border-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-clx-yellow rounded-lg flex items-center justify-center">
+                    <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg>
+                </div>
+                <span class="text-lg font-bold">CLX STUDIO</span>
+            </div>
+            <p class="text-gray-500 text-sm">© 2024 CLX Studio. All rights reserved.</p>
+            <div class="flex gap-6 text-sm">
+                <a href="#" class="text-gray-400 hover:text-clx-yellow transition-colors">Privacy</a>
+                <a href="#" class="text-gray-400 hover:text-clx-yellow transition-colors">Terms</a>
+                <a href="#" class="text-gray-400 hover:text-clx-yellow transition-colors">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const galleryImages = [
+            "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=1200&fit=crop",
+            "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&fit=crop",
+            "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=1200&fit=crop",
+            "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1200&fit=crop",
+            "https://images.unsplash.com/photo-1520854221256-17451cc330e7?w=1200&fit=crop",
+            "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&fit=crop",
+            "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&fit=crop",
+            "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1200&fit=crop"
+        ];
+        let currentImageIndex = 0;
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            document.getElementById('lightbox-img').src = galleryImages[index];
+            document.getElementById('lightbox').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            document.getElementById('lightbox-img').src = galleryImages[currentImageIndex];
+        }
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            document.getElementById('lightbox-img').src = galleryImages[currentImageIndex];
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeLightbox();
+            if (!document.getElementById('lightbox').classList.contains('hidden')) {
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'ArrowLeft')  prevImage();
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('nav-blur', window.scrollY > 50);
+            navbar.classList.toggle('border-b', window.scrollY > 50);
+            navbar.classList.toggle('border-gray-800', window.scrollY > 50);
+        });
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('.reveal').forEach(el => {
+            gsap.to(el, {
+                scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" },
+                opacity: 1, y: 0, duration: 0.8, ease: "power3.out"
+            });
+        });
+    </script>
+</body>
+</html>
