@@ -125,11 +125,13 @@
     </div>
 
     <script>
-        // 1. Initialize Supabase
-        // Replace these placeholders with your actual project credentials from your Supabase Dashboard Settings
-        const SUPABASE_URL = 'https://sdixpwxchenqdzvdtxxx.supabase.co';
+       // 1. Initialize Supabase
+        // FIX 1: Removed "/bookings" from the end of the project URL
+        const SUPABASE_URL = 'https://sdixpwxchenqdzvdtxxx.supabase.co'; 
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNkaXhwd3hjaGVucWR6dmR0eHh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk3NTUyMTEsImV4cCI6MjA5NTMzMTIxMX0._S42A7ho5alkIHCt-dGnQSpV0wffym95yBEzkNRsyCM';
-        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // FIX 2: Prefixed createClient with 'supabase.' so the browser can find it
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         // 2. Handle Form Submission
         const bookingForm = document.getElementById('booking-form');
@@ -154,7 +156,7 @@
 
             try {
                 // Insert data into your 'bookings' table
-                const { data, error } = await supabase
+                const { data, error } = await supabaseClient
                     .from('bookings')
                     .insert([formData]);
 
