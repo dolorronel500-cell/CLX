@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLX Studio | Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'clx-black':        '#0a0a0a',
+                        'clx-dark':         '#111111',
+                        'clx-yellow':       '#FFC107',
+                        'clx-yellow-hover': '#FFB300',
+                    },
+                    fontFamily: { 'sans': ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased bg-clx-black text-white selection:bg-clx-yellow selection:text-black min-h-screen flex flex-col">
+    <div class="grain"></div>
+
+    <!-- Nav -->
+    <nav class="fixed w-full z-50 nav-blur border-b border-gray-800 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3 group cursor-pointer" onclick="location.href='index.html'">
+                <div class="w-10 h-10 bg-clx-yellow rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
+                    <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                </div>
+                <span class="text-lg font-bold tracking-wider text-white">CLX STUDIO</span>
+            </div>
+            <a href="index.html" class="text-sm text-gray-400 hover:text-clx-yellow transition-colors">← Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- Login Form -->
+    <main class="flex-1 flex items-center justify-center pt-24 pb-16 px-6">
+        <div class="w-full max-w-md">
+            <!-- Header -->
+            <div class="text-center mb-10">
+                <div class="w-16 h-16 bg-clx-yellow/10 border border-clx-yellow/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-8 h-8 text-clx-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    </svg>
+                </div>
+                <h1 class="text-3xl font-bold mb-2">Welcome Back</h1>
+                <p class="text-gray-400">Sign in to your CLX Studio account</p>
+            </div>
+
+            <!-- Card -->
+            <div class="bg-clx-dark/60 backdrop-blur-sm border border-gray-800 rounded-3xl p-8">
+                <!-- Error / Success messages -->
+                <div id="msg-error" class="hidden mb-5 bg-red-500/10 border border-red-500/30 text-red-400 px-4 py-3 rounded-xl text-sm flex items-center gap-2">
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span id="msg-error-text"></span>
+                </div>
+                <div id="msg-success" class="hidden mb-5 bg-green-500/10 border border-green-500/30 text-green-400 px-4 py-3 rounded-xl text-sm flex items-center gap-2">
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    <span id="msg-success-text"></span>
+                </div>
+
+                <div class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
+                        <input type="email" id="login-email" placeholder="juan@example.com"
+                            class="w-full bg-black/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-clx-yellow focus:outline-none transition-colors placeholder-gray-600">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-2">Password</label>
+                        <div class="relative">
+                            <input type="password" id="login-password" placeholder="••••••••"
+                                class="w-full bg-black/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-clx-yellow focus:outline-none transition-colors placeholder-gray-600">
+                            <button type="button" onclick="togglePass('login-password', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button id="login-btn" onclick="handleLogin()"
+                        class="w-full bg-clx-yellow text-black py-3.5 rounded-xl font-bold text-base hover:bg-clx-yellow-hover transform hover:scale-[1.01] transition-all duration-300 shadow-lg shadow-clx-yellow/20 mt-2">
+                        Sign In
+                    </button>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-gray-800 text-center space-y-3">
+                    <p class="text-gray-500 text-sm">Don't have an account?
+                        <a href="signup.html" class="text-clx-yellow hover:underline font-medium">Create one</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const SUPABASE_URL = 'https://sdixpwxchenqdzvdtxxx.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNkaXhwd3hjaGVucWR6dmR0eHh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk3NTUyMTEsImV4cCI6MjA5NTMzMTIxMX0._S42A7ho5alkIHCt-dGnQSpV0wffym95yBEzkNRsyCM';
+        const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // If already logged in, redirect
+        sb.auth.getSession().then(({ data: { session } }) => {
+            if (session) {
+                const redirect = new URLSearchParams(location.search).get('redirect') || 'booking.html';
+                location.href = redirect;
+            }
+        });
+
+        function showError(msg) {
+            document.getElementById('msg-error-text').textContent = msg;
+            document.getElementById('msg-error').classList.remove('hidden');
+            document.getElementById('msg-success').classList.add('hidden');
+        }
+        function showSuccess(msg) {
+            document.getElementById('msg-success-text').textContent = msg;
+            document.getElementById('msg-success').classList.remove('hidden');
+            document.getElementById('msg-error').classList.add('hidden');
+        }
+        function togglePass(id, btn) {
+            const inp = document.getElementById(id);
+            inp.type = inp.type === 'password' ? 'text' : 'password';
+        }
+
+        async function handleLogin() {
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+            const btn = document.getElementById('login-btn');
+
+            if (!email || !password) { showError('Please fill in all fields.'); return; }
+
+            btn.disabled = true;
+            btn.textContent = 'Signing in…';
+
+            const { data, error } = await sb.auth.signInWithPassword({ email, password });
+
+            if (error) {
+                showError(error.message);
+                btn.disabled = false;
+                btn.textContent = 'Sign In';
+                return;
+            }
+
+            showSuccess('Login successful! Redirecting…');
+            setTimeout(() => {
+                const redirect = new URLSearchParams(location.search).get('redirect') || 'booking.html';
+                location.href = redirect;
+            }, 1000);
+        }
+
+        // Allow Enter key
+        document.addEventListener('keydown', e => { if (e.key === 'Enter') handleLogin(); });
+    </script>
+</body>
+</html>
