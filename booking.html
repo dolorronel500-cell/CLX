@@ -28,6 +28,31 @@
 </head>
 <body class="antialiased bg-clx-black text-white selection:bg-clx-yellow selection:text-black">
 
+    <!-- Auth Guard Banner -->
+    <div id="auth-banner" class="hidden fixed inset-0 z-[200] flex items-center justify-center bg-black/90 backdrop-blur-sm">
+        <div class="text-center max-w-sm px-6">
+            <div class="w-16 h-16 bg-clx-yellow/10 border border-clx-yellow/30 rounded-2xl flex items-center justify-center mx-auto mb-5">
+                <svg class="w-8 h-8 text-clx-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            </div>
+            <h2 class="text-2xl font-bold mb-2">Login Required</h2>
+            <p class="text-gray-400 mb-6 text-sm">You need to be logged in to make a reservation. Please sign in or create a free account.</p>
+            <div class="flex flex-col gap-3">
+                <a href="login.html?redirect=booking.html" class="bg-clx-yellow text-black py-3 px-8 rounded-full font-bold hover:bg-yellow-400 transition-all">Sign In</a>
+                <a href="signup.html" class="border border-gray-600 text-white py-3 px-8 rounded-full font-semibold hover:border-clx-yellow hover:text-clx-yellow transition-all text-sm">Create Account</a>
+                <a href="index.html" class="text-gray-500 hover:text-gray-300 text-sm mt-2">← Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logged-in User Bar -->
+    <div id="user-bar" class="hidden fixed top-0 right-0 z-[60] pt-5 pr-6 flex items-center gap-3">
+        <div class="bg-clx-dark/80 backdrop-blur-sm border border-gray-700 rounded-full px-4 py-1.5 flex items-center gap-2 text-sm">
+            <div class="w-6 h-6 bg-clx-yellow rounded-full flex items-center justify-center text-black font-bold text-xs" id="user-avatar">?</div>
+            <span id="user-email-display" class="text-gray-300 max-w-32 truncate"></span>
+            <button onclick="signOutClient()" class="text-gray-500 hover:text-red-400 transition-colors ml-1 text-xs">Sign out</button>
+        </div>
+    </div>
+
     <div class="grain"></div>
 
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4">
@@ -50,6 +75,9 @@
                 <a href="gallery.html"  class="text-sm font-medium text-gray-300 hover:text-clx-yellow transition-colors relative group">Gallery</a>
                 <a href="booking.html"  class="text-sm font-medium text-white hover:text-clx-yellow transition-colors relative group">Booking<span class="absolute -bottom-1 left-0 w-full h-0.5 bg-clx-yellow"></span></a>
                 <a href="contact.html"  class="text-sm font-medium text-gray-300 hover:text-clx-yellow transition-colors relative group">Contact</a>
+                <a href="login.html"  class="text-sm font-medium text-gray-300 hover:text-clx-yellow transition-colors relative group">Login<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-clx-yellow transition-all duration-300 group-hover:w-full"></span></a>
+                <a href="signup.html" class="bg-clx-yellow text-black px-5 py-2 rounded-full font-semibold text-sm hover:bg-yellow-400 transition-all">Sign Up</a>
+                <a href="admin.html"  class="text-gray-600 hover:text-gray-400 transition-colors text-xs" title="Admin">&#9679; Admin</a>
             </div>
             <button id="mobile-menu-btn" class="md:hidden text-white p-2">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -125,6 +153,41 @@
     </div>
 
     <script>
+
+        // ── AUTH CHECK ──
+        const SUPABASE_URL_B = 'https://sdixpwxchenqdzvdtxxx.supabase.co';
+        const SUPABASE_ANON_KEY_B = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNkaXhwd3hjaGVucWR6dmR0eHh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk3NTUyMTEsImV4cCI6MjA5NTMzMTIxMX0._S42A7ho5alkIHCt-dGnQSpV0wffym95yBEzkNRsyCM';
+        const sbCheck = supabase.createClient(SUPABASE_URL_B, SUPABASE_ANON_KEY_B);
+
+        (async () => {
+            const { data: { session } } = await sbCheck.auth.getSession();
+            if (!session) {
+                document.getElementById('auth-banner').classList.remove('hidden');
+            } else {
+                document.getElementById('user-bar').classList.remove('hidden');
+                const email = session.user.email || '';
+                document.getElementById('user-email-display').textContent = email;
+                document.getElementById('user-avatar').textContent = email[0].toUpperCase();
+                // Pre-fill email
+                const emailInput = document.getElementById('email');
+                if (emailInput) emailInput.value = email;
+                const meta = session.user.user_metadata || {};
+                if (meta.full_name) {
+                    const fnInput = document.getElementById('full_name');
+                    if (fnInput) fnInput.value = meta.full_name;
+                }
+                if (meta.phone) {
+                    const phInput = document.getElementById('phone');
+                    if (phInput) phInput.value = meta.phone;
+                }
+            }
+        })();
+
+        async function signOutClient() {
+            await sbCheck.auth.signOut();
+            location.reload();
+        }
+
        // 1. Initialize Supabase
         // FIX 1: Removed "/bookings" from the end of the project URL
         const SUPABASE_URL = 'https://sdixpwxchenqdzvdtxxx.supabase.co'; 
